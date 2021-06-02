@@ -189,13 +189,13 @@ def.format.reaeration <- function(
     #Fill in background concentration data
     try(outputDF$backgroundSaltConc[i] <- rea_externalLabDataSalt$finalConcentration[rea_externalLabDataSalt$namedLocation == station &
                                                                                        rea_externalLabDataSalt$startDate == startDate &
-                                                                                       grepl("[A-Z]{4}\\.B[1-4]",rea_externalLabDataSalt[[saltSampleID]])], silent = T)
+                                                                                       grepl("[A-Z]{4}\\.B[1-4]",rea_externalLabDataSalt[["saltSampleID"]])], silent = T)
 
     #Fill in plateau concentration data for constant rate injection
     pSaltConc <- rea_externalLabDataSalt$finalConcentration[
       rea_externalLabDataSalt$namedLocation == station &
         rea_externalLabDataSalt$startDate == startDate &
-        grepl(repRegex, rea_externalLabDataSalt[[saltSampleID]])]
+        grepl(repRegex, rea_externalLabDataSalt[["saltSampleID"]])]
 
     #Concatenate all values for plotting and assessment
     outputDF$plateauSaltConc[i] <- paste(pSaltConc, collapse = "|")
@@ -204,7 +204,7 @@ def.format.reaeration <- function(
     pGasConc <- rea_externalLabDataGas$gasTracerConcentration[
       rea_externalLabDataGas$namedLocation == station &
         rea_externalLabDataGas$startDate == startDate &
-        grepl(repRegex, rea_externalLabDataGas[[gasSampleID]])]
+        grepl(repRegex, rea_externalLabDataGas[["gasSampleID"]])]
 
     #Concatenate all values for plotting and assessment
     outputDF$plateauGasConc[i] <- paste(pGasConc, collapse = "|")
@@ -212,7 +212,7 @@ def.format.reaeration <- function(
     #Fill in mean wetted width
     wettedWidthVals <- rea_widthFieldData$wettedWidth[
       rea_widthFieldData$namedLocation == siteID &
-        grepl(substr(startDate, 1, 10), rea_widthFieldData[[collectDate]])]
+        grepl(substr(startDate, 1, 10), rea_widthFieldData[["collectDate"]])]
 
     #Remove outliers TBD
     #Calculate the mean wetted width
