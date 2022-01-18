@@ -103,7 +103,7 @@ def.format.reaeration <- function(
   rea_externalLabDataSalt$finalConcentration[rea_externalLabDataSalt$saltBelowDetectionQF == 1] <- NA
 
   #Merge the rea_backgroundFieldSaltData and rea_fieldData tables
-  if(exists("rea_backgroundFieldSaltData")){
+  if(!is.null(rea_backgroundFieldSaltData)){
     loggerSiteData <- merge(rea_backgroundFieldSaltData,
                             rea_fieldData,
                             by = c('siteID', 'collectDate'), all = T)
